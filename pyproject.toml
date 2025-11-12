@@ -35,3 +35,20 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
 Repository = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
+
+# ----------------------------------------------------
+# [tool.comfy] セクション
+# ComfyUI Managerのための固有の設定です。
+[tool.comfy]
+
+# 必須: あなたのGitHubユーザー名またはユニークな識別子。
+# Managerはこれを使ってノードの場所を特定します。
+PublisherId = "boba-svg" 
+
+# 推奨: Managerのリストに表示される、ユーザーフレンドリーな名前。
+# 日本語でも構いませんが、英字名が推奨されます。
+DisplayName = "ComfyUI_AutoBatchRunner" 
+
+# (オプション) ノードが特定のサブディレクトリにある場合に指定します。
+# 通常はルートにあるため、不要です。
+# Root = "."
