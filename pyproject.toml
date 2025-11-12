@@ -1,45 +1,39 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "ComfyUI_AutoBatchRunner"
+name = "comfyui-autobatchrunner"
 version = "0.1.0"
-description = "Auto Batch Runner UI for ComfyUI - Automatically runs prompts in batches with UI controls and hotkeys."
-authors = [
-    { name = "Boba-svg", email = "your-email@example.com" }  # 必要に応じて変更
-]
-license = { text = "MIT" }  # 必要に応じてライセンスを変更
+description = "Adds an Auto-Batch Runner UI to ComfyUI: numeric input for run count, start/stop UI, hotkeys, and intervaled auto-run."
 readme = "README.md"
-requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Boba-svg" }
+]
+keywords = ["ComfyUI", "batch", "automation", "UI"]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Topic :: Multimedia :: Graphics",
-    "Framework :: ComfyUI"
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: UI Tools",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
 ]
-
-# ComfyUI カスタムノードとして必須の依存関係（例）
-dependencies = [
-    # ComfyUI 本体は通常別途インストールされるため、厳密な依存は不要
-    # 必要に応じて追加
-]
+requires-python = ">=3.8"
 
 [project.urls]
-Homepage = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
-Repository = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
-Issues = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner/issues"
+"Homepage" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
+"Repository" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
+"Bug Tracker" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner/issues"
 
-[project.optional-dependencies]
-dev = [
-    "black",
-    "isort",
-    "flake8"
-]
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+# 他に必要な依存ライブラリがあれば以下に追加
+# e.g. comfyui = "^x.y"
+# e.g. some-ui-package = "^a.b"
 
-[tool.setuptools]
-packages = ["auto_batch_runner"]  # 実際のフォルダ名に合わせる（例: __init__.py があるフォルダ）
+[tool.poetry.dev-dependencies]
+pytest = "^7.0"
+mypy = "^1.0"
+# 必要に応じて lint ツール等追加
 
-[tool.setuptools.package-data]
-"auto_batch_runner" = ["*.py", "*.json", "*.md"]
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
