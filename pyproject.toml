@@ -1,39 +1,37 @@
+[build-system]
+# ビルドに使用するバックエンドを指定（ここでは標準的な setuptools を使用）
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "comfyui-autobatchrunner"
-version = "0.0.3"
-description = "Adds an Auto-Batch Runner UI to ComfyUI: numeric input for run count, start/stop UI, hotkeys, and intervaled auto-run."
+# プロジェクトの基本的なメタデータ
+name = "ComfyUI_AutoBatchRunner"
+# バージョンはプロジェクトに合わせて適宜変更してください
+version = "1.0.0" 
+description = "Automatically run batches of workflows in ComfyUI."
 readme = "README.md"
-license = { file = "LICENSE" }
 authors = [
-  { name = "Boba-svg" }
+    {name = "Boba-svg"}, # GitHubの作者名を使用
 ]
-keywords = ["ComfyUI", "batch", "automation", "UI"]
+license = {file = "LICENSE"} # LICENSEファイルがあれば
+requires-python = ">=3.10" # ComfyUIが要求するPythonバージョンに合わせて調整
+
+# プロジェクトの依存関係 (ComfyUIカスタムノードとして通常は最小限で済みます)
+dependencies = [
+    "requests", # 必要に応じて、依存するライブラリを追加
+    # 例: "numpy>=1.20"
+]
+
+# PyPIでの分類
 classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Developers",
-  "Topic :: Software Development :: UI Tools",
-  "License :: OSI Approved :: MIT License",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License", # 適切なライセンスを選択
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-requires-python = ">=3.8"
 
 [project.urls]
-"Homepage" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
-"Repository" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
-"Bug Tracker" = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner/issues"
-
-[tool.poetry.dependencies]
-python = ">=3.8,<4.0"
-# 他に必要な依存ライブラリがあれば以下に追加
-# e.g. comfyui = "^x.y"
-# e.g. some-ui-package = "^a.b"
-
-[tool.poetry.dev-dependencies]
-pytest = "^7.0"
-mypy = "^1.0"
-# 必要に応じて lint ツール等追加
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+Homepage = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
+Repository = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
