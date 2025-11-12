@@ -1,6 +1,6 @@
 [project]
 name = "comfyui-autobatchrunner"
-version = "0.1.0"
+version = "0.0.1"
 description = "Adds an Auto-Batch Runner UI to ComfyUI: numeric input for run count, start/stop UI, hotkeys, and intervaled auto-run."
 readme = "README.md"
 license = { file = "LICENSE" }
