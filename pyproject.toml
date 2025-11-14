@@ -33,8 +33,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
-Repository = "https://github.com/Boba-svg/ComfyUI_AutoBatchRunner"
+Homepage = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
+Repository = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
 
 # ----------------------------------------------------
 # [tool.comfy] セクション
