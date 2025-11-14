@@ -1,4 +1,4 @@
-# File: ComfyUI/custom_nodes/ComfyUI_AutoBatchRunner/__init__.py
+# File: ComfyUI/custom_nodes/ComfyUI-AutoBatchRunner/__init__.py
 import os
 import json
 
