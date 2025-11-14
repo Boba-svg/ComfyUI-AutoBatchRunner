@@ -4,8 +4,8 @@ requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-# プロジェクトの基本的なメタデータ
-name = "ComfyUI-AutoBatchRunner"
+# プロジェクトの基本的なメタデータ リネーム
+name = "ComfyUI-AutoBatchRunner" 
 # バージョンはプロジェクトに合わせて適宜変更してください
 version = "1.0.1" 
 description = "Automatically run batches of workflows in ComfyUI."
