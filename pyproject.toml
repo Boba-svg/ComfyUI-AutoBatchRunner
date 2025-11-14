@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 # プロジェクトの基本的なメタデータ
-name = "ComfyUI_AutoBatchRunner"
+name = "ComfyUI-AutoBatchRunner"
 # バージョンはプロジェクトに合わせて適宜変更してください
 version = "1.0.0" 
 description = "Automatically run batches of workflows in ComfyUI."
@@ -47,7 +47,7 @@ PublisherId = "boba-svg"
 
 # 推奨: Managerのリストに表示される、ユーザーフレンドリーな名前。
 # 日本語でも構いませんが、英字名が推奨されます。
-DisplayName = "ComfyUI_AutoBatchRunner" 
+DisplayName = "ComfyUI-AutoBatchRunner" 
 
 # (オプション) ノードが特定のサブディレクトリにある場合に指定します。
 # 通常はルートにあるため、不要です。
