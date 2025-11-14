@@ -1,4 +1,4 @@
-// File: ComfyUI/custom_nodes/ComfyUI_AutoBatchRunner/js/auto_runner_ui.js
+// File: ComfyUI/custom_nodes/ComfyUI-AutoBatchRunner/js/auto_runner_ui.js
 // 機能: 起動時自動ロード / 右上固定UI / auto_runner_config.json 読み込み / ショートカット
 // UI表示: [数字入力欄] [Start(Q)] [Stop(S)]
 
@@ -16,7 +16,7 @@
     // 設定ロード
     async function loadConfig() {
         try {
-            const res = await fetch('/extensions/ComfyUI_AutoBatchRunner/auto_runner_config.json');
+            const res = await fetch('/extensions/ComfyUI-AutoBatchRunner/auto_runner_config.json');
             const config = await res.json();
             
             CONFIG.runs = config.auto_batch_runs ?? CONFIG.runs;
