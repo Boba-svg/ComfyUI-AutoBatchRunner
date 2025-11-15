@@ -17,16 +17,6 @@ dependencies = [
     # 例: "numpy>=1.20"
 ]
 
-# PyPIでの分類
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License", # 適切なライセンスを選択
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
-]
-
 [project.urls]
 Homepage = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
 Repository = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
