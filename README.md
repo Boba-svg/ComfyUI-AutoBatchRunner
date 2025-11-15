@@ -33,7 +33,7 @@ Shift+S → Stop auto-run
 
 In short, it automates multiple prompt runs in ComfyUI with simple UI controls and hotkeys.
 
-インストール
-cd /notebooks/ComfyUI/custom_nodes/
-git clone https://github.com/Boba-svg/ComfyUI-AutoBatchRunner.git
+インストール  
+cd /notebooks/ComfyUI/custom_nodes/  
+git clone https://github.com/Boba-svg/ComfyUI-AutoBatchRunner.git  
 
