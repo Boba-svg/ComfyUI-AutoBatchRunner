@@ -1,21 +1,20 @@
 [project]
 # プロジェクトの基本的なメタデータ リネーム
+
 name = "ComfyUI-AutoBatchRunner" 
 # バージョンはプロジェクトに合わせて適宜変更してください
+
 version = "1.0.6" 
+
 description = "This script adds an automatic batch runner UI to ComfyUI. The underscore in ComfyUI_AutoBatchRunner is a naming error. Please use ComfyUI-AutoBatchRunner."
+
 readme = "README.md"
+
 authors = [
     {name = "Boba-svg"}, # GitHubの作者名を使用
 ]
-license = {file = "LICENSE"} # LICENSEファイルがあれば
-requires-python = ">=3.10" # ComfyUIが要求するPythonバージョンに合わせて調整
 
-# プロジェクトの依存関係 (ComfyUIカスタムノードとして通常は最小限で済みます)
-dependencies = [
-    "requests", # 必要に応じて、依存するライブラリを追加
-    # 例: "numpy>=1.20"
-]
+requires-python = ">=3.10" # ComfyUIが要求するPythonバージョンに合わせて調整
 
 [project.urls]
 Repository = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
