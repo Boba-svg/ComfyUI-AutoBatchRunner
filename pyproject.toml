@@ -8,13 +8,14 @@ version = "1.0.6"
 
 description = "This script adds an automatic batch runner UI to ComfyUI. The underscore in ComfyUI_AutoBatchRunner is a naming error. Please use ComfyUI-AutoBatchRunner."
 
-readme = "README.md"
+requires-python = ">=3.10" # ComfyUIが要求するPythonバージョンに合わせて調整
 
 authors = [
     {name = "Boba-svg"}, # GitHubの作者名を使用
 ]
 
-requires-python = ">=3.10" # ComfyUIが要求するPythonバージョンに合わせて調整
+# 必須: ライセンス。あなたのリポジトリはMITライセンスなので、そのように指定します。
+license = { text = "MIT" } 
 
 [project.urls]
 Repository = "https://github.com/Boba-svg/ComfyUI-AutoBatchRunner"
