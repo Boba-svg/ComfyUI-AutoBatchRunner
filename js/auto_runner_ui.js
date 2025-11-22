@@ -1,14 +1,14 @@
 // File: ComfyUI/custom_nodes/ComfyUI-AutoBatchRunner/js/auto_runner_ui.js
 // 機能: 起動時自動ロード / 右上固定UI / auto_runner_config.json 読み込み / ショートカット
-// UI表示: [数字入力欄] [Start(Q)] [Stop(S)]
+// UI表示: [秒数]秒 [枚数]枚 [Start(Q)] [Stop(S)]
 
 (async function () {
     // -------------------------
     // 設定セクション
     // -------------------------
     let CONFIG = {
-        runs: 20,
-        intervalMs: 2000,
+        runs: 1000,
+        intervalMs: 10000,
         startKey: "Q",
         stopKey: "S"
     };
@@ -81,67 +81,78 @@
             existingUi.remove();
         }
         
-        // 1. メインコンテナの作成
         const container = document.createElement('div');
         container.id = 'auto-batch-runner-ui';
-        
-        // CSSで画面右上に固定配置
-        // ★★★ 変数説明の追加 ★★★
-        const CSS_TOP_POSITION = '60px';  // 画面上端からの距離。この値を大きくすると下に移動します。
-        const CSS_RIGHT_POSITION = '10px'; // 画面右端からの距離。この値を大きくすると左に移動します。
-        const CSS_Z_INDEX = '99999';       // 重なり順。他の要素よりも手前に表示するための値です。
-        // ★★★ 説明はここまで ★★★
 
         container.style.cssText = `
             position: fixed;
-            top: ${CSS_TOP_POSITION};
-            right: ${CSS_RIGHT_POSITION};
-            z-index: ${CSS_Z_INDEX};
+            top: 60px;
+            right: 10px;
+            z-index: 99999;
             padding: 8px;
             background-color: #333;
             border: 1px solid #555;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
             color: white;
             font-family: sans-serif;
         `;
         
-        // 2. 実行回数入力フィールド
+        // Interval(sec) 入力フィールド
+        const intervalInput = document.createElement('input');
+        intervalInput.id = 'auto-batch-interval';
+        intervalInput.type = 'number';
+        intervalInput.min = '0.01';
+        intervalInput.step = '0.01';
+        intervalInput.value = (CONFIG.intervalMs / 1000).toFixed(2);
+        intervalInput.placeholder = 'Sec';
+        intervalInput.style.cssText = 'width: 60px; padding: 2px 5px; border-radius: 4px; border: 1px solid #555; background-color: #444; color: white; text-align: center;';
+
+        // 追加：ラベル「秒」
+        const secLabel = document.createElement('span');
+        secLabel.textContent = "秒";
+
+        // Runs 入力フィールド
         const runInput = document.createElement('input');
         runInput.id = 'auto-batch-run-count';
         runInput.type = 'number';
         runInput.min = '1';
         runInput.value = CONFIG.runs;
         runInput.placeholder = 'Runs'; 
-        runInput.style.cssText = 'width: 70px; padding: 2px 5px; border-radius: 4px; border: 1px solid #555; background-color: #444; color: white; text-align: center;';
+        runInput.style.cssText = intervalInput.style.cssText;
 
-        // 3. 実行ボタン (Start)
+        // 追加：ラベル「枚」
+        const countLabel = document.createElement('span');
+        countLabel.textContent = "枚";
+
+        // Start ボタン
         const startButton = document.createElement('button');
         startButton.textContent = 'Start(Q)'; 
-        startButton.style.cssText = 'padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.1s;';
-        startButton.onmouseover = () => startButton.style.backgroundColor = '#5cb85c';
-        startButton.onmouseout = () => startButton.style.backgroundColor = '#4CAF50';
+        startButton.style.cssText = 'padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;';
         startButton.onclick = () => {
+            const sec = parseFloat(intervalInput.value) || (CONFIG.intervalMs / 1000);
+            const intervalMs = Math.max(sec * 1000, 1);
             const count = parseInt(runInput.value, 10) || CONFIG.runs;
-            window.app.autoBatchRun(count, CONFIG.intervalMs); 
+            window.app.autoBatchRun(count, intervalMs);
         };
         
-        // 4. 停止ボタン (Stop)
+        // Stop ボタン
         const stopButton = document.createElement('button');
         stopButton.textContent = 'Stop(S)'; 
-        stopButton.style.cssText = 'padding: 5px 10px; background-color: #F44336; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.1s;';
-        stopButton.onmouseover = () => stopButton.style.backgroundColor = '#e64e40';
-        stopButton.onmouseout = () => stopButton.style.backgroundColor = '#F44336';
+        stopButton.style.cssText = 'padding: 5px 10px; background-color: #F44336; color: white; border: none; border-radius: 4px; cursor: pointer;';
         stopButton.onclick = () => {
             window.app.isAutoRunning = false;
             console.warn("[AutoBatchRun] STOPPED via UI Button");
         };
 
         // UIをコンテナに追加
+        container.appendChild(intervalInput);
+        container.appendChild(secLabel);  // ← 追加
         container.appendChild(runInput); 
+        container.appendChild(countLabel); // ← 追加
         container.appendChild(startButton);
         container.appendChild(stopButton);
         
@@ -149,10 +160,10 @@
     }
 
     createUI(); 
-    console.log("[AutoBatchRun] UI LOADED and FIXED to top right (60px from top).");
+    console.log("[AutoBatchRun] UI LOADED and FIXED to top right.");
 
     // -------------------------
-    // ショートカット：Shift+Q で開始 / Shift+S で停止
+    // ショートカット：Shift+Q / Shift+S
     // -------------------------
     document.addEventListener("keydown", (e) => {
         const isInput = ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName);
@@ -160,18 +171,20 @@
 
         const key = e.key.toUpperCase();
         const runInput = document.getElementById('auto-batch-run-count');
+        const intervalInput = document.getElementById('auto-batch-interval');
+
+        const sec = parseFloat(intervalInput?.value) || (CONFIG.intervalMs / 1000);
+        const intervalMs = Math.max(sec * 1000, 1);
         const count = parseInt(runInput?.value, 10) || CONFIG.runs;
 
         if (key === CONFIG.startKey && e.shiftKey) {
             e.preventDefault();
-            window.app.autoBatchRun(count, CONFIG.intervalMs);
-            console.log("[AutoBatchRun] Started via Shift+Q");
+            window.app.autoBatchRun(count, intervalMs);
         }
 
         if (key === CONFIG.stopKey && e.shiftKey) {
             e.preventDefault();
             window.app.isAutoRunning = false;
-            console.warn("[AutoBatchRun] STOPPED via Shift+S");
         }
     });
 })();
